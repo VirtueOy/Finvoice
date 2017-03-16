@@ -6,6 +6,7 @@
             "email": "info@virtue.fi"
         }
     ],
+    "version": "1.0.0",
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.0"
