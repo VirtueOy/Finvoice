@@ -325,6 +325,10 @@ class Finvoice {
 		foreach($this->settings->invoice->rows as $row) {
 			
 			$invoiceRow = $finvoice->addChild('InvoiceRow');
+
+            $rowVatAmount         = $row->amount * ($row->price * ($row->vat / 100));
+            $rowVatExcludedAmount = $row->amount * $row->price;
+            $rowAmount            = $row->amount * ($row->price * (100 + $row->vat) / 100);
 			
 			$invoiceRow->addChild('ArticleName', $row->name);
 			if(isset($row->ordered)) {
@@ -339,9 +343,9 @@ class Finvoice {
 				$invoiceRow->addChild('RowIdentifier', $row->id);
 			}
 			$invoiceRow->addChild('RowVatRatePercent', $row->vat);
-			$invoiceRow->addChild('RowVatAmount', number_format($row->amount * round($row->price * ($row->vat / 100), 2), 2, ',', ''))->addAttribute('AmountCurrencyIdentifier', 'EUR');
-			$invoiceRow->addChild('RowVatExcludedAmount', number_format($row->amount * $row->price, 2, ',', ''))->addAttribute('AmountCurrencyIdentifier', 'EUR');
-			$invoiceRow->addChild('RowAmount', number_format($row->amount * round($row->price * (100 + $row->vat) / 100, 2), 2, ',', ''))->addAttribute('AmountCurrencyIdentifier', 'EUR');
+			$invoiceRow->addChild('RowVatAmount', number_format($rowVatAmount, 2, ',', ''))->addAttribute('AmountCurrencyIdentifier', 'EUR');
+			$invoiceRow->addChild('RowVatExcludedAmount', number_format($rowVatExcludedAmount, 2, ',', ''))->addAttribute('AmountCurrencyIdentifier', 'EUR');
+			$invoiceRow->addChild('RowAmount', number_format($rowAmount, 2, ',', ''))->addAttribute('AmountCurrencyIdentifier', 'EUR');
 		}
 		
 		#$specificationDetails = $finvoice->addChild('SpecificationDetails');
