@@ -2,11 +2,13 @@
 
 body
 {
-	margin:5px;
+  margin: 40px auto;
+  max-width: 100%;
+  width: 1080px;
 	padding:0;
 	background-color:#ffffff;
 	color:#000000;
-	width:99%;
+  font: 12px/150% sans-serif;
 }
 
 table
@@ -97,7 +99,7 @@ table.invoiceRows
 table.invoiceRows td
 {
 	margin:0px;
-	padding:3px 3px 0px 3px;
+	padding: 5px 0;
 	vertical-align:top;
 }
 
@@ -131,7 +133,7 @@ tr.groupSeparator td
 
 tr.rowSeparator td
 {
-	height:0.5em;
+	height:0;
 	border-top:1px dashed black;
 }
 
